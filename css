@@ -1,0 +1,58 @@
+header,footer
+{
+	display: block;
+}
+header{
+	font-family: Times News Roman;
+	color: #FFF;
+  	background-image: url('pic.jpg') ;
+  	background-size: 100%;
+  	text-align: center;
+}
+h2{
+	text-align:center;
+}
+body
+{
+	height: 650px;
+	min-height: 100%;
+ 	display: flex;
+  	flex-direction: column;
+  	font-weight: 300;
+  	line-height: 1.5;
+}
+.Pic
+{
+	text-align: left;
+	align-content: left;
+}
+.Text
+{
+	text-align: right;
+	align-content: :right;
+}
+table,th,td,tr
+{
+	border:1px solid black;
+	border-spacing: 20px;
+	border-collapse: collapse;
+	font-size: 15px;
+	text-align: center;
+}
+table
+{
+	margin-top: 50px;
+	width:350px;
+	align-self: center;
+}
+footer
+{
+	position:  relative;
+	margin-top: 400px;
+	height: 25px;
+	min-width: 100%;
+	background-color: #000;
+	min-height: 5%;
+	color:#FFF;
+	text-align: right;
+}
