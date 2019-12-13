@@ -20,16 +20,6 @@ body
   	font-weight: 300;
   	line-height: 1.5;
 }
-.Pic
-{
-	text-align: left;
-	align-content: left;
-}
-.Text
-{
-	text-align: right;
-	align-content: :right;
-}
 table,th,td,tr
 {
 	border:1px solid black;
@@ -46,12 +36,9 @@ table
 }
 footer
 {
-	position:  relative;
 	margin-top: 400px;
-	height: 25px;
-	min-width: 100%;
+	min-height: 100%;
 	background-color: #000;
-	min-height: 7%;
 	color:#FFF;
 	text-align: right;
 }
