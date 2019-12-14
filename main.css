@@ -27,6 +27,11 @@ body
 	padding-bottom: 40px;
 
 }
+.gstl_50.gsc-input
+{
+	margin-top: 0px;
+	border-collapse: collapse;
+}
 
 table,th,td,tr
 {
