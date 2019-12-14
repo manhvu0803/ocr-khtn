@@ -32,7 +32,15 @@ body
 	margin-top: 0px;
 	border-collapse: collapse;
 }
-
+table.gsc-search-box
+{
+	
+	border-collapse: collapse;
+}
+.gcse-searchbox-only
+{
+	background-color: grey;
+}
 table,th,td,tr
 {
 	border:1px solid black;
@@ -54,4 +62,38 @@ footer
 	background-color: #000;
 	color:#FFF;
 	text-align: right;
+}
+gstl_50.gsc-input
+{
+	margin-top: 0px;
+	border-collapse: collapse;
+}
+
+.gsib_b
+{
+	display: none;
+}
+#gsc-iw-id1
+{
+	border: none;
+}
+
+td.gsc-input
+{
+	padding-right: -10px;
+}
+
+.gsc-search-button
+{
+	padding: 0px;
+}
+button.gsc-search-button.gsc-search-button-v2
+{
+	margin-left: 0px;
+}
+button.gsc-search-button.gsc-search-button-v2>svg
+{
+
+	width:  21px;
+	height: 21px;
 }
