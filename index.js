@@ -10,25 +10,34 @@ var vntk = require('./vntk_engine.js');
 	
 console.log('Starting');
 
-var server;
+
+
+function addContent(content, id, str) {
+	var i = str.indexOf(`id="${id}`), lim = str.length
+	while (str[i] != '>' && i < lim) i++;
+	return str.slice(0, i + 1) + content + str.slice(i + 1, lim);
+}
 
 loadFile.load('./test.html').then((val) => {
-	server = http.createServer((req, res) => {	
+	var server = http.createServer((req, res) => {	
 		console.log(req.url);
-		if (req.url == '/' || req.url == '/fileupload') {
-			if  (req.url == '/fileupload') {
-				var form = new formi.IncomingForm();
-				form.parse(req, (err, fields, files) => {
-					console.log(`Path: ${files.filetoupload.path}`);
-					console.log(`Type: ${files.filetoupload.type}\n`);
-					tess.load(files.filetoupload.path).then((file) => {
-						loadFile.load(`./${file}`).then((content) => {							
-						})
-					})
-				});
-			}
-			res.writeHead(200, {"Content-Type": "text/html"})
+		if (req.url == '/') {
+			res.writeHead(200, {"Content-Type": "text/html"});
 			res.end(val);
+		}
+		else if  (req.url == '/fileupload') {
+			var form = new formi.IncomingForm();
+			form.parse(req, (err, fields, files) => {
+				console.log(`Path: ${files.filetoupload.path}\nName: ${files.filetoupload.name}\nType: ${files.filetoupload.type}\n`);
+				tess.load(files.filetoupload.path).then((file) => {
+					loadFile.load(`./${file}`).then((content) => {
+						val = addContent(content, "OCR", val);
+						val = addContent(vntk.extractKW(content), "keyword", val);
+						res.writeHead(200, {"Content-Type": "text/html"});
+						res.end(val);
+					})
+				})
+			})
 		}
 		else {
 			const url = req.url.slice(1);

@@ -4,17 +4,20 @@ var fs = require('fs');
 
 var words;
 
-function load(file) {
+function extractKW(data) {
+	var arr = vntk.posTag().tag(data);
+	arr = unduplicate(arr.filter((val, i) => !hasSpecialChar(val[0]) && val[1] != 'CH' && val[1] != 'E' && val[1] != 'L'));
+	words = tf(data, arr);
+	toTxt(words, 'out0');
+	while(words.length > 20) words = filterKW(words);
+	console.log(`extract ${words.length} keyword(s)`);
+	return words.map((item) => item.word).join(' ');	
+}
+
+function loadFile(file) {
 	var promise = new Promise((resolve, reject) => {
 		loadFile.load(file).then((data) => {
-			var arr = vntk.posTag().tag(data);
-			arr = unduplicate(arr.filter((val, i) => 
-				!hasSpecialChar(val[0]) && val[1] != 'CH' && val[1] != 'E' && val[1] != 'L')
-			);
-			words = tf(data, arr)
-			toTxt(words, 'out0');
-			while(words.length > 20) words = filterKW(words);
-			toTxt(words, 'out');	
+			resolve(extractKW);
 		})
 	})
 	return promise;
@@ -22,7 +25,7 @@ function load(file) {
 
 function filterKW(words) {
 	var sum = 0;
-	words.forEach((word) => {sum += word.tf});
+	words.forEach((word) => { sum += word.tf });
 	var aver = sum / words.length;
 	console.log(`\x1b[36m%s\x1b[0m`, `tf average: ${aver}`);
 	return words.filter((word) => word.tag == 'Np' || word.tf >= aver);
@@ -93,5 +96,6 @@ function toTxt(tokens, fileName)
 }
 
 module.exports = {
-	load: load,
+	loadFile: loadFile,
+	extractKW: extractKW,
 }
