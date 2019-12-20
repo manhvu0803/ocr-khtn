@@ -9,8 +9,7 @@ function extractKW(data) {
 	arr = unduplicate(arr.filter((val, i) => !hasSpecialChar(val[0]) && val[1] != 'CH' && val[1] != 'E' && val[1] != 'L'));
 	words = tf(data, arr);
 	toTxt(words, 'out0');
-	while(words.length > 20) 
-		words = filterKW(words);	
+	words = reduceKW(filterKW(words), 25);
 	toTxt(words, 'out');
 	console.log(`extract ${words.length} keyword(s)`);
 	return words.map((item) => item.word).join(' ');
@@ -44,12 +43,12 @@ function filterKW(words) {
 
 function reduceKW(words, limit) {
 	words.sort((a, b) => {
-		if (a.tag == 'Np' && isNaN(word.word)) return -1;
+		if (a.tag == 'Np' && isNaN(a.word)) return -1;
 		return b.tf - a.tf;
 	});
 	var cnt = 0;
 	words = words.filter((val, index) => {
-		if ((val.tag == 'Np' && isNaN(word.word)) || cnt < limit) {
+		if ((val.tag == 'Np' && isNaN(val.word)) || cnt < limit) {
 			cnt++;
 			return true;
 		}
