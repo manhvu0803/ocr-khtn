@@ -27,7 +27,7 @@ function load(file) {
 function filterKW(words) {
 	var sum = 0;
 	words.forEach((word) => { 
-		if (word.tag == 'Np' && isNaN(word.word)) word.tf += 1;
+		if (word.tag == 'Np' && isNaN(word.word)) word.tf += 0.5;
 		else if (word.tag == 'N') word.tf += 0.3;
 		else if (word.tag == 'M')  word.tf -= 0.3;
 	})
@@ -72,7 +72,7 @@ function tf(str, tokens) {
 	var arr = [];
 	tokens.forEach((item, i) => {
 		tf.tfidfs(item[0].toLowerCase(), (j, measure) => {
-			if (measure > 0) {
+			if (measure > 0 && item[0].length > 1) {
 				arr.push({word: item[0], tag: item[1], tf: measure, index: i});
 				if (item[1] == 'Np') arr[arr.length - 1].tf += 1;
 				else if (item[1] == 'N') arr[arr.length - 1].tf += 0.3;
