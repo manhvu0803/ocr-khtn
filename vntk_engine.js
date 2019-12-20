@@ -4,8 +4,6 @@ var fs = require('fs');
 
 var words;
 
-load('./input.txt');
-
 function extractKW(data) {
 	var arr = vntk.posTag().tag(data);
 	arr = unduplicate(arr.filter((val, i) => !hasSpecialChar(val[0]) && val[1] != 'CH' && val[1] != 'E' && val[1] != 'L'));
