@@ -5,7 +5,9 @@ header,footer
 header{
 	font-family: Times News Roman;
 	color: #FFF;
-  	background-image: url('pic.jpg') ;
+  	background-image: linear-gradient(to right bottom, #bc5a40, #c76449, #d26e52, #de785b, #e98264, #ef8b6c, #f49474, #fa9d7c, #fba785, #fdb18f, #febb9a, #ffc5a5);
+  	background-size: 100%;
+  	text-align: center;
   	background-size: 100%;
   	text-align: center;
 }
@@ -14,6 +16,7 @@ h2{
 }
 body
 {
+	background-image: linear-gradient(to bottom, #ffe4b0, #ffe0ac, #ffdca9, #ffd8a5, #ffd4a2, #ffd0a0, #ffcd9e, #ffc99c, #ffc49b, #ffbf9a, #ffbb9a, #ffb69a);
 	min-height: 100%;
  	display: flex;
   	flex-direction: column;
