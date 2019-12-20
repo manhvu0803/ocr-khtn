@@ -10,8 +10,6 @@ var vntk = require('./vntk_engine.js');
 	
 console.log('Starting');
 
-
-
 function addContent(content, id, str) {
 	var i = str.indexOf(`id="${id}`), lim = str.length
 	while (str[i] != '>' && i < lim) i++;
@@ -31,10 +29,10 @@ loadFile.load('./test.html').then((val) => {
 				console.log(`Path: ${files.filetoupload.path}\nName: ${files.filetoupload.name}\nType: ${files.filetoupload.type}\n`);
 				tess.load(files.filetoupload.path).then((file) => {
 					loadFile.load(`./${file}`).then((content) => {
-						val = addContent(content, "OCR", val);
-						val = addContent(vntk.extractKW(content), "keyword", val);
+						var result = addContent(content, "OCR", val);
+						result = addContent(vntk.extractKW(content), "keyword", result);
 						res.writeHead(200, {"Content-Type": "text/html"});
-						res.end(val);
+						res.end(result);
 					})
 				})
 			})

@@ -4,7 +4,7 @@ var dest = 'D:\\Dev\\Javascript\\vntk\\output';
 
 var load = (src) => {
 	var promise = new Promise((resolve, reject) => {
-		var cmd = `tesseract ${src} ${dest} -l eng+vie`;
+		var cmd = `tesseract ${src} ${dest} -l vie`;
 		childProc.exec(cmd, (err, stdout, stderr) => {
 			if (err) return console.log(err);
 			console.log(`stdout ${stdout}`);
